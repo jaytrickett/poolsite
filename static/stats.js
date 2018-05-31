@@ -55,7 +55,8 @@ function buildChartData(){
     for (var pool in pools){
         poolWorkerData.push({
             key: pool,
-            values: pools[pool].workers
+            values: pools[pool].workers,
+			color: "#3CAD5E"
         });
         poolHashrateData.push({
             key: pool,
@@ -84,6 +85,7 @@ function timeOfDayFormat(timestamp){
     return dStr;
 }
 
+
 function displayCharts(){
 
     nv.addGraph(function() {
@@ -92,13 +94,17 @@ function displayCharts(){
             .x(function(d){ return d[0] })
             .y(function(d){ return d[1] })
             .useInteractiveGuideline(true)
-            .clipEdge(true);
+            .clipEdge(true)
+			.showControls(false);
+
 
         poolWorkerChart.xAxis.tickFormat(timeOfDayFormat);
 
         poolWorkerChart.yAxis.tickFormat(d3.format('d'));
 
         d3.select('#poolWorkers').datum(poolWorkerData).call(poolWorkerChart);
+
+		
 
         return poolWorkerChart;
     });

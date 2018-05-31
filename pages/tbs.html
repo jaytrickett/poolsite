@@ -57,7 +57,7 @@
         <td>{{=it.stats.pools[pool].poolStats.validBlocks}}</td>
         <td>{{=it.stats.pools[pool].blocks.pending}}</td>
         <td>{{=it.stats.pools[pool].blocks.confirmed}}</td>
-        <td>{{=it.stats.pools[pool].blocks.orphaned}}</td>
+		<td>{{=it.stats.pools[pool].poolStats.validBlocks-it.stats.pools[pool].blocks.pending-it.stats.pools[pool].blocks.confirmed}}</td>
         <td>{{=it.stats.pools[pool].hashrateString}}</td>
     </tr>
     {{ } }}

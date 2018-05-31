@@ -1,37 +1,3 @@
-<style>
-    #bottomNotes {
-        display: block;
-        padding-left: 18px;
-        padding-right: 18px;
-        padding-bottom: 18px;
-    }
-    #topPool {
-        padding-top: 18px;
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-    #topPool > div > div > svg {
-        display: block;
-        height: 280px;
-    }
-    .poolWrapper {
-        border: solid 1px #c7c7c7;
-        border-radius: 5px;
-        padding: 5px;
-        margin-bottom: 18px;
-    }
-    .poolLabel {
-        font-size: 1.2em;
-        text-align: center;
-        padding: 4px;
-    }
-    .poolMinerTable {
-
-    }
-    table {
-        width: 100%;
-    }
-</style>
 <script type="text/javascript">
   $(function () {
     $(document).tooltip({
@@ -55,9 +21,20 @@
     });
 });
 </script>
+<div class="pure-g-r" id="boxUpper">
+   <div class="pure-u-1-1">
+	   <div class="boxStats" id="boxUpper">
+	   <div class="boxUpperHeader">Payout History</div>
+	   </div>
+	</div>
+</div>
 {{ function readableDate(a){ return new Date(parseInt(a)).toString(); } }}
 {{ for(var pool in it.stats.pools) { }}
-<table>
+<div class="pure-g-r" id="boxesLower">
+<div class="pure-u-5-5">
+<div class="topCharts">
+<div class="chartWrapper">
+<table class="pure-table">
     <thead>
     <tr>
         <th>Blocks</th>
@@ -68,7 +45,7 @@
     </tr>
     </thead>
       {{ for(var p in it.stats.pools[pool].payments) { }}
-<tr>
+<tr class="pure-table-odd">
           <td>
           {{if (String(it.stats.pools[pool].name).startsWith("zcash")) { }}
           <a href="https://explorer.zcha.in/tx/{{=it.stats.pools[pool].payments[p].txid}}"  title="View transaction" target="_blank">{{=it.stats.pools[pool].payments[p].blocks}}</a>
@@ -89,5 +66,8 @@
       </tr>
       {{ } }}
   </table>
+  </div>
+</div>
+</div>
 </div>
 {{ } }}
